@@ -13,5 +13,6 @@ jobs:
     - name: Upload and release
       uses: ncipollo/release-action@v1
       with:
-        bodyFile: "CHANGELOG.md"
         token: ${{ secrets.GITHUB_TOKEN }}
+        body: "hello"
+        bodyFile: "CHANGELOG.md"
