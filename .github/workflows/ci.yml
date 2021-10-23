@@ -15,4 +15,4 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: "hello"
-        bodyFile: "CHANGELOG.md"
+        bodyFile: "${{ github.workspace }}/CHANGELOG.md"
