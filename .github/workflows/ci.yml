@@ -12,11 +12,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: get details
       run: |
-        echo 'RELEASE_DETAILS<<EOF' >> $GITHUB_ENV
-        RELEASE_DETAILS="$(awk -vN=2 'n<N;/^# /{++n}' CHANGELOG.md)" >> $GITHUB_ENV
-        echo 'EOF' >> $GITHUB_ENV
+        export RELEASE_DETAILS="$(awk -vN=2 'n<N;/^# /{++n}' CHANGELOG.md)" 
+        export RELEASE_DETAILS="$(sed '${/^# /d;}' <<< "$RELEASE_DETAILS")"
+        touch bla.md
+        echo "$RELEASE_DETAILS" > bla.md
     - name: Upload and release
       uses: ncipollo/release-action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        body: "${{ env.RELEASE_DETAILS }}"
+        body: "${{ RELEASE_DETAILS }}"
