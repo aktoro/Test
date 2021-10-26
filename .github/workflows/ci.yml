@@ -13,9 +13,10 @@ jobs:
     - name: get details
       run: |
         export RELEASE_DETAILS ="$(awk -vN=2 'n<N;/^# /{++n}' CHANGELOG.md)"
-        echo RELEASE_DETAILS ="$(sed '${/^# /d;}' <<< $RELEASE_DETAILS")" >> $GITHUB_ENV
+        export RELEASE_DETAILS ="$(sed '${/^# /d;}' <<< $RELEASE_DETAILS")" 
+        printenv RELEASE_DETAILS
     - name: Upload and release
       uses: ncipollo/release-action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        body: "${{ env.RELEASE_DETAILS }}"
+        # body: "${{ env.RELEASE_DETAILS }}"
