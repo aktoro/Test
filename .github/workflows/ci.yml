@@ -16,6 +16,7 @@ jobs:
         ls
         cd postgres
         ls
+        cd ..
         export RELEASE_DETAILS="$(awk -vN=2 'n<N;/^# /{++n}' CHANGELOG.md)" 
         export RELEASE_DETAILS="$(sed '${/^# /d;}' <<< "$RELEASE_DETAILS")"
         touch bla.md
