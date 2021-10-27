@@ -12,6 +12,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: get details
       run: |
+        git clone https://github.com/postgres/postgres.git
+        ls
+        cd postgres
+        ls
         export RELEASE_DETAILS="$(awk -vN=2 'n<N;/^# /{++n}' CHANGELOG.md)" 
         export RELEASE_DETAILS="$(sed '${/^# /d;}' <<< "$RELEASE_DETAILS")"
         touch bla.md
